@@ -3,7 +3,7 @@ function login() {
   const password = document.getElementById('password').value;
   const errorMessage = document.getElementById('error-message');
 
-  if (username === 'leonardo' && password === 'leozin6480') {
+  if (username === 'leonardo' && password === '1234') {
     // Redirecionar para a página do website em caso de login bem-sucedido
     window.location.href = 'website.html';
   } else {
