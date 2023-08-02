@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Controle de Iluminação</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .light {
+      width: 100px;
+      height: 100px;
+      background-color: grey;
+      border-radius: 50%;
+      margin: 20px auto;
+    }
+
+    .on {
+      background-color: yellow;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Controle de Iluminação</h1>
+  <div class="light" id="light"></div>
+  <button onclick="toggleLight()">Ligar/Desligar</button>
+
+  <script>
+    let isLightOn = false;
+    const lightElement = document.getElementById('light');
+
+    function toggleLight() {
+      isLightOn = !isLightOn;
+      if (isLightOn) {
+        lightElement.classList.add('on');
+      } else {
+        lightElement.classList.remove('on');
+      }
+    }
+  </script>
+</body>
+</html>
