@@ -4,46 +4,129 @@
   <title>Controle de Iluminação</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      margin: 20px;
+      margin: 0;
+      padding: 50px;
+      color: #fff;
+      background: linear-gradient(-45deg, #f43b47, #453a94, #3f51b5, #e91e63);
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    .light-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border-radius: 50%;
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
     }
 
     .light {
-      width: 100px;
-      height: 100px;
-      background-color: grey;
+      width: 150px;
+      height: 150px;
+      background-color: #f5f5f5;
       border-radius: 50%;
-      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #444;
+      transition: background-color 0.2s;
     }
 
-    .on {
-      background-color: yellow;
+    .light.on {
+      background-color: #ffeb3b;
+      color: #333;
     }
 
     button {
       padding: 10px 20px;
       font-size: 18px;
       cursor: pointer;
+      background-color: #1a237e;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0d47a1;
+    }
+
+    .message {
+      font-size: 16px;
+      color: #666;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .animation {
+      animation: fadeInOut 2s infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
 <body>
   <h1>Controle de Iluminação</h1>
-  <div class="light" id="light"></div>
+  <div class="light-container" onclick="toggleLight()">
+    <div class="light" id="light">OFF</div>
+    <div class="message animation" id="message">Luz ligada!</div>
+  </div>
   <button onclick="toggleLight()">Ligar/Desligar</button>
 
   <script>
     let isLightOn = false;
     const lightElement = document.getElementById('light');
+    const messageElement = document.getElementById('message');
 
     function toggleLight() {
       isLightOn = !isLightOn;
       if (isLightOn) {
         lightElement.classList.add('on');
+        lightElement.textContent = 'ON';
+        showMessage('Luz ligada!');
       } else {
         lightElement.classList.remove('on');
+        lightElement.textContent = 'OFF';
+        showMessage('Luz desligada!');
       }
+    }
+
+    function showMessage(message) {
+      messageElement.textContent = message;
+      messageElement.style.display = 'block';
+      setTimeout(() => {
+        messageElement.style.display = 'none';
+      }, 2000);
     }
   </script>
 </body>
