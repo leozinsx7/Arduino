@@ -25,7 +25,7 @@ body {
   max-width: 400px;
   margin: 0 auto;
   padding: 30px;
-  background: tranparent;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -44,7 +44,7 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  background: transparent;
+  background-color: #f5f5f5;
   border-radius: 5px;
   padding: 10px;
 }
