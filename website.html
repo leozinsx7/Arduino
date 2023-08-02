@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Página de Login</title>
+  <title>Controle de Iluminação</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -30,24 +30,37 @@
       color: #fff;
     }
 
-    .login-container {
-      max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 5px;
+    .light-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      border-radius: 50%;
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out;
     }
 
-    input[type="text"],
-    input[type="password"] {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
+    .light {
+      width: 150px;
+      height: 150px;
+      background-color: #f5f5f5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #444;
+      transition: background-color 0.2s;
+    }
+
+    .light.on {
+      background-color: #ffeb3b;
+      color: #333;
     }
 
     button {
@@ -65,81 +78,55 @@
       background-color: #0d47a1;
     }
 
-    .hidden {
+    .message {
+      font-size: 16px;
+      color: #666;
+      margin-top: 10px;
       display: none;
+    }
+
+    .animation {
+      animation: fadeInOut 2s infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="login-container" id="login-container">
-    <h1>Página de Login</h1>
-    <input type="text" placeholder="Usuário" id="username">
-    <input type="password" placeholder="Senha" id="password">
-    <button onclick="login()">Entrar</button>
+  <h1>Controle de Iluminação</h1>
+  <div class="light-container" onclick="toggleLight()">
+    <div class="light" id="light">OFF</div>
+    <div class="message animation" id="message">Luz ligada!</div>
   </div>
+  <button onclick="toggleLight()">Ligar/Desligar</button>
 
-  <div class="light-container hidden" id="light-container" onclick="toggleLight()">
-    <div class="light" id="light"></div>
-  </div>
-  <button class="light-off hidden" id="light-off" onclick="toggleLight()">
-    <i class="far fa-lightbulb"></i>
-    <span>Ligar</span>
-  </button>
-  <button class="light-on hidden" id="light-on" onclick="toggleLight()">
-    <i class="fas fa-lightbulb"></i>
-    <span>Desligar</span>
-  </button>
-
-  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
   <script>
     let isLightOn = false;
-    const loginContainer = document.getElementById('login-container');
-    const lightContainer = document.getElementById('light-container');
     const lightElement = document.getElementById('light');
-    const lightOnButton = document.getElementById('light-on');
-    const lightOffButton = document.getElementById('light-off');
-
-    function login() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      // Aqui você pode implementar a lógica para verificar o usuário e senha.
-      // Por exemplo, verificar em um banco de dados ou usar credenciais pré-definidas.
-      // Neste exemplo simples, vamos apenas exibir uma mensagem no console.
-
-      console.log(`Tentativa de login com usuário: ${username} e senha: ${password}`);
-
-      // Simulando login bem-sucedido
-      if (username === 'usuario' && password === 'senha') {
-        loginContainer.classList.add('hidden');
-        lightContainer.classList.remove('hidden');
-        lightElement.textContent = 'OFF';
-      }
-    }
+    const messageElement = document.getElementById('message');
 
     function toggleLight() {
       isLightOn = !isLightOn;
       if (isLightOn) {
         lightElement.classList.add('on');
-        showLightOnButton();
+        lightElement.textContent = 'ON';
+        showMessage('Luz ligada!');
       } else {
         lightElement.classList.remove('on');
-        showLightOffButton();
+        lightElement.textContent = 'OFF';
+        showMessage('Luz desligada!');
       }
     }
 
-    function showLightOnButton() {
-      lightOnButton.classList.add('light-off');
-      lightOnButton.classList.remove('light-on');
-      lightOffButton.classList.remove('hidden');
-      lightOnButton.classList.add('hidden');
-    }
-
-    function showLightOffButton() {
-      lightOffButton.classList.add('light-on');
-      lightOffButton.classList.remove('light-off');
-      lightOnButton.classList.remove('hidden');
-      lightOffButton.classList.add('hidden');
+    function showMessage(message) {
+      messageElement.textContent = message;
+      messageElement.style.display = 'block';
+      setTimeout(() => {
+        messageElement.style.display = 'none';
+      }, 2000);
     }
   </script>
 </body>
