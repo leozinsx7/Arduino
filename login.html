@@ -7,15 +7,17 @@
 </head>
 <body>
   <div class="login-container">
-    <h1>Controle de Iluminação</h1>
+    <h1><i class="fas fa-lightbulb"></i> Controle de Iluminação</h1>
     <form>
-      <label for="username">Usuário:</label>
-      <input type="text" id="username" placeholder="Digite seu usuário">
-
-      <label for="password">Senha:</label>
-      <input type="password" id="password" placeholder="Digite sua senha">
-
-      <button type="button" onclick="login()">Entrar</button>
+      <div class="input-container">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Usuário">
+      </div>
+      <div class="input-container">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Senha">
+      </div>
+      <button onclick="login()"><i class="fas fa-sign-in-alt"></i> Entrar</button>
       <div id="error-message"></div>
     </form>
   </div>
