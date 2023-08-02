@@ -8,10 +8,16 @@
 <body>
   <div class="login-container">
     <h1>Controle de Iluminação</h1>
-    <input type="text" id="username" placeholder="Usuário">
-    <input type="password" id="password" placeholder="Senha">
-    <button onclick="login()">Entrar</button>
-    <div id="error-message"></div>
+    <form>
+      <label for="username">Usuário:</label>
+      <input type="text" id="username" placeholder="Digite seu usuário">
+
+      <label for="password">Senha:</label>
+      <input type="password" id="password" placeholder="Digite sua senha">
+
+      <button type="button" onclick="login()">Entrar</button>
+      <div id="error-message"></div>
+    </form>
   </div>
 
   <script src="script.js"></script>
